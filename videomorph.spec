@@ -9,6 +9,7 @@ Source0:    %{url}/archive/%{version}/%{name}-%{version}.tar.gz
 BuildArch:  noarch
 
 BuildRequires:  python3-devel
+BuildRequires:  python3-setuptools
 BuildRequires:  desktop-file-utils
 BuildRequires:  python3-rpm-macros
 BuildRequires:  ffmpeg
