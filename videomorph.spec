@@ -27,7 +27,7 @@ FLV, MOV, OGV, and also extract the audio to a file with MP3 format.
 
 %prep
 %autosetup
-sed -i -e 's@#!/usr/bin/python@#!/usr/bin/python3@g' setup.py bin/videomorph tests/*
+%py3_shebang_fix setup.py bin/videomorph tests/*
 
 
 %build
