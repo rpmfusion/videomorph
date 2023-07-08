@@ -26,7 +26,7 @@ FLV, MOV, OGV, and also extract the audio to a file with MP3 format.
 
 %prep
 %autosetup
-pathfix.py -pni "%{__python3}" setup.py bin/videomorph tests/*
+sed -i -e 's@#!/usr/bin/python@#!/usr/bin/python3@g' setup.py bin/videomorph tests/*
 
 
 %build
