@@ -1,6 +1,6 @@
 Name:       videomorph
 Version:    1.4.1
-Release:    14%{?dist}
+Release:    15%{?dist}
 Summary:    Small GUI wrapper for FFMPEG based on PyQt5
 License:    ASL 2.0
 URL:        https://github.com/videomorph-dev/videomorph
@@ -54,6 +54,9 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/videomorph.desktop
 
 
 %changelog
+* Fri Aug 02 2024 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 1.4.1-15
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_41_Mass_Rebuild
+
 * Thu Jun 13 2024 Leigh Scott <leigh123linux@gmail.com> - 1.4.1-14
 - Rebuilt for Python 3.13
 
