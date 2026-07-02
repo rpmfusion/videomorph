@@ -11,6 +11,7 @@ BuildArch:  noarch
 BuildRequires:  python3-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  python3-rpm-macros
+BuildRequires:  python3-qt5
 BuildRequires:  ffmpeg
 
 Requires:       ffmpeg
