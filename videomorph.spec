@@ -1,6 +1,6 @@
 Name:       videomorph
 Version:    1.4.1
-Release:    18%{?dist}
+Release:    19%{?dist}
 Summary:    Small GUI wrapper for FFMPEG based on PyQt5
 License:    ASL 2.0
 URL:        https://github.com/videomorph-dev/videomorph
@@ -9,7 +9,6 @@ Source0:    %{url}/archive/%{version}/%{name}-%{version}.tar.gz
 BuildArch:  noarch
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
 BuildRequires:  desktop-file-utils
 BuildRequires:  python3-rpm-macros
 BuildRequires:  ffmpeg
@@ -30,30 +29,42 @@ FLV, MOV, OGV, and also extract the audio to a file with MP3 format.
 %py3_shebang_fix setup.py bin/videomorph tests/*
 
 
+%generate_buildrequires
+%pyproject_buildrequires
+
+
 %build
-%{py3_build}
+%{pyproject_wheel}
 
 %install
-%{py3_install}
+%{pyproject_install}
+%pyproject_save_files -l videomorph
 
 rm -rf %{buildroot}%{_datadir}/doc/
 rm -f share/doc/videomorph/manual/*.pdfE
 
+# TODO: fixup non-pyproject files
+mv %{buildroot}%{python3_sitelib}/usr/share %{buildroot}%{_datadir}
+rm -rf %{buildroot}%{_datadir}/doc/videomorph
+
 desktop-file-validate %{buildroot}%{_datadir}/applications/videomorph.desktop
 
-%files
+%check
+%pyproject_check_import
+
+%files -f %{pyproject_files}
 %doc README.md share/doc/videomorph/manual changelog.gz
-%license LICENSE
 %{_bindir}/videomorph
 %{_datadir}/applications/videomorph.desktop
 %{_datadir}/icons/videomorph.png
 %{_datadir}/videomorph/
 %{_mandir}/man1/videomorph.*
-%{python3_sitelib}/videomorph-*-py%{python3_version}.egg-info
-%{python3_sitelib}/videomorph/
 
 
 %changelog
+* Thu Jul 02 2026 Nicolas Chauvet <kwizart@gmail.com> - 1.4.1-19
+- Pyprojectize
+
 * Mon Feb 02 2026 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 1.4.1-18
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_44_Mass_Rebuild
 
